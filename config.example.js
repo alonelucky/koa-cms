@@ -9,5 +9,9 @@ module.exports = {
         password:'123456',
         database:'sequelize'
 
+    },
+    redis:{
+        host:'127.0.0.1',
+        port:'6379'
     }
 }
