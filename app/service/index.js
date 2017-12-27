@@ -1,8 +1,11 @@
 const db = require('./model')
-
+const user = require('./user')
 
 module.exports = async (ctx,next) => {
-    ctx.db = db.models
+    ctx.db = {
+        user
+    }
+
     ctx.db.query = db.query
     await next()
 }
