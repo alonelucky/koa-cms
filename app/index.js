@@ -6,7 +6,7 @@ const session = require('koa-session2')
 const {redis,Store} = require('./libs/redis')
 const render = require('koa-ejs')
 const path = require('path')
-const db = require('./model')
+const service = require('./service')
 const router = require('./router')
 
 
@@ -23,7 +23,7 @@ app.use(csrf('key'))
 app.use(bodyParser())
 
 // 挂载数据库操作到ctx
-app.use(db)
+app.use(service)
 
 // 设置模板引擎
 render(app,{
