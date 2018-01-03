@@ -13,7 +13,7 @@ router.post('/login', async(ctx, next) => {
     let user = await ctx.db.user.findByName(data.username).catch(err => { console.error(err) })
     if (!user) {
         msg.code = 10102
-        msg.msg = '用户名尚未注册'
+        msg.msg = '用户不存在'
         return ctx.body = msg
     }
 
