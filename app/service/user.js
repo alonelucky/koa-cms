@@ -1,5 +1,5 @@
 const db = require('./model')
-const libArray = require('../libs/array')
+const _ = require('lodash')
 const { user, usermeta, post, postmeta, comment, commentmeta, term } = db.models
 
 const userSchema = ['id', 'username', 'password', 'email', 'status', 'authority', 'loginedAt', 'createdAt', 'updatedAt']
@@ -74,7 +74,7 @@ user.findByIdAndComment = async(id) => {
         attributes: ['password', 'username', 'email', 'status', 'id'],
         include: [
             { model: usermeta, attributes: ['ukey', 'uvalue'] },
-            { model: post, attributes: ['content', 'id'], where: { status: 0 }, include: [{ model: post, attributes: ['id', 'title', 'abstract'] }] }
+            { model: post, attributes: ['content', 'id'], where: { publishStatus: 0 }, include: [{ model: post, attributes: ['id', 'title', 'abstract'] }] }
         ]
     }
     return await user.findOne(ops)
@@ -116,10 +116,12 @@ user.updateAndMetaById = async(id, obj) => {
         return 10006
     }
     await user.updateMainById(id, obj)
-    let keys = libArray(Object.keys(obj), userSchema)
-    keys.map(item => {
-        await usermeta.create({ ukey: item, uvalue: obj[item] })
-    })
+    let keys = _.without(Object.keys(obj), ...userSchema)
+    if (keys.length) {
+        keys.map(async item => {
+            await usermeta.create({ ukey: item, uvalue: obj[item] })
+        })
+    }
     return await user.findById(id, {
         include: [
             { model: usermeta }
