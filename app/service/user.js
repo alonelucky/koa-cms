@@ -29,7 +29,7 @@ user.findByName = async(name) => {
  * */
 user.findById = async(id) => {
     // 如果传入的id不是数字,直接返回空
-    if (!parseInt(id)) {
+    if (!Number(id)) {
         return 10006
     }
     let ops = {
@@ -46,7 +46,7 @@ user.findById = async(id) => {
 
 user.findByIdAndPost = async(id) => {
     // 如果传入的id不是数字,直接返回空
-    if (!parseInt(id)) {
+    if (!Number(id)) {
         return 10006
     }
     let ops = {
@@ -64,7 +64,7 @@ user.findByIdAndPost = async(id) => {
 
 user.findByIdAndComment = async(id) => {
     // 如果传入的id不是数字,直接返回空
-    if (!parseInt(id)) {
+    if (!Number(id)) {
         return 10006
     }
     let ops = {
@@ -104,15 +104,15 @@ user.signup = async(obj) => {
 
 // 更新user主表信息
 user.updateMainById = async(id, obj) => {
-    if (!parseInt(id)) {
+    if (!Number(id)) {
         return 10006
     }
-    return await user.update(obj, { where: { id: parseInt(id) } })
+    return await user.update(obj, { where: { id: id } })
 }
 
 // 更新主表及附加表,返回用户完整信息
 user.updateAndMetaById = async(id, obj) => {
-    if (!parseInt(id)) {
+    if (!Number(id)) {
         return 10006
     }
     await user.updateMainById(id, obj)
@@ -129,7 +129,7 @@ user.updateAndMetaById = async(id, obj) => {
 
 // 删除用户
 user.deleteById = async(id) => {
-    if (!parseInt(id)) {
+    if (!Number(id)) {
         return 10006
     }
     return await user.delete({ where: { id: id } })
@@ -137,7 +137,7 @@ user.deleteById = async(id) => {
 
 // 修改用户权限
 user.authById = async(id, obj) => {
-    if (!parseInt(id)) {
+    if (!Number(id)) {
         return 10006
     }
     return user.updateMainById(id, obj)
