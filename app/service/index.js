@@ -1,4 +1,5 @@
 const user = require('./user')
+const post = require('./post')
 
 module.exports = async(ctx, next) => {
     ctx.db = {
