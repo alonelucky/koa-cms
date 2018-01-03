@@ -11,6 +11,7 @@ let schema = {
     uriName: {
         type: STRING(50),
         defaultValue: 'category',
+        unique: true,
         comment: '类型的西文字母,分类/标签等'
     },
     description: {

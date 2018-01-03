@@ -50,7 +50,6 @@ CommentMeta.belongsTo(Comment, { constraints: false })
 Comment.hasMany(Comment, { constraints: false })
 Comment.belongsTo(Comment, { constraints: false })
 
-db.sync({ force: true })
-
+db.sync({ force: true }).catch(err => { console.log(err) })
 
 module.exports = db
