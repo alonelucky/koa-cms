@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+		<html xmlns="http://www.w3.org/1999/xhtml" class="ie8" lang="zh-CN">
+	<![endif]-->
+<!--[if !(IE 8) ]><!-->
+<html lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>后台登录</title>
+    <link rel='stylesheet' href='/css/login.css' media='all' />
+    <meta name='robots' content='noindex,follow' />
+    <meta name="viewport" content="width=device-width" />
+    <style lang="">
+        h1 a {
+            background: #abc;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="login login-action-login wp-core-ui  locale-zh-cn">
+    <div id="login">
+        <h1>
+            <a href="#" title="koa-cms" tabindex="-1"></a>
+        </h1>
+        <p class="message hidden"> 您已登出。<br /></p>
+        <form name="loginform" id="loginform" action="" method="post">
+            <p>
+                <label for="username">用户名<br />
+				<input type="text" name="username" id="username" aria-describedby="login_error" class="input" value="" size="20" /></label>
+            </p>
+            <p>
+                <label for="password">密码<br />
+				<input type="password" name="password" id="password" aria-describedby="login_error" class="input" value="" size="20" /></label>
+            </p>
+            <p class="submit">
+                <input type="hidden" name="_csrf" value="1" />
+                <input type="button" name="wp-submit" id="submit" class="button button-primary button-large" value="登录" />
+            </p>
+        </form>
+        <!-- <p id="nav">
+            <a href="">忘记密码？</a>
+        </p> -->
+        <p id="backtoblog"><a href="/">&larr; 返回前台首页</a></p>
+    </div>
+    <div class="clear"></div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    $('input').on('keydown', function(e) {
+        hiddenMsg()
+    })
+
+    $('#submit').click(function(e) {
+        e.preventDefault;
+        var data = $('#loginform').serialize()
+        $.ajax({
+            url: '/api/login',
+            data: data,
+            method: 'POST',
+            success: function(e) {
+                showMsg(e.msg)
+            }
+        })
+    })
+
+    function showMsg(msg) {
+        $('.message').removeClass('hidden').text(msg)
+    }
+
+    function hiddenMsg() {
+        $('.message').addClass('hidden')
+    }
+</script>
+
+</html>
