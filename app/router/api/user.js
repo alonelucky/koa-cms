@@ -11,24 +11,26 @@ router.post('/login', checkUserForm, async(ctx, next) => {
 
     // 验证是否已注册
     let user = await ctx.db.user.findByName(data.username).catch(err => { console.error(err) })
+    console.log(1)
     if (!user) {
         msg.code = 10102
         msg.msg = '用户不存在'
-        return ctx.body = msg
+        ctx.body = msg
+        return
     }
-
+    console.log(2)
     if (user.password != hash.hash256(data.password, data.username)) {
         msg.code = 10103
         msg.msg = '用户名密码不匹配'
         return ctx.body = msg
     }
-
+    console.log(3)
     msg.code = 0
     msg.msg = '登陆成功'
     user.password = null
     ctx.session.user = user
     msg.user = user
-    return ctx.body = msg
+    ctx.body = msg
 })
 
 router.post('/signup', checkUserForm, async(ctx, next) => {
@@ -113,7 +115,7 @@ function checkCsrf(ctx, next) {
         msg.msg = '请刷新页面后重试'
         return ctx.body = msg
     }
-    await next()
+    return next()
 }
 
 // 用户提交表单验证
@@ -124,5 +126,5 @@ function checkUserForm(ctx, next) {
         msg.msg = '用户名密码均不能为空'
         return ctx.body = msg
     }
-    await netx()
+    return next()
 }
