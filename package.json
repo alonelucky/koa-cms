@@ -23,6 +23,7 @@
     "sequelize": "^4.28.6"
   },
   "devDependencies": {
+    "koa-static": "^4.0.2",
     "supervisor": "^0.12.0"
   }
 }
