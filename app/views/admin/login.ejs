@@ -39,7 +39,7 @@
 				<input type="password" name="password" id="password" aria-describedby="login_error" class="input" value="" size="20" /></label>
             </p>
             <p class="submit">
-                <input type="hidden" name="_csrf" value="1" />
+                <input type="hidden" name="_csrf" value="<%= _csrf %>" />
                 <input type="button" name="wp-submit" id="submit" class="button button-primary button-large" value="登录" />
             </p>
         </form>

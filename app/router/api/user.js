@@ -6,7 +6,7 @@ const hash = require('../../libs/hash')
 let msg = {}
 
 // 用户登陆逻辑
-router.post('/login', checkUserForm, async(ctx, next) => {
+router.post('/login', checkCsrf, checkUserForm, async(ctx, next) => {
     let data = ctx.request.body
 
     // 验证是否已注册
@@ -110,7 +110,9 @@ module.exports = router
 function checkCsrf(ctx, next) {
     let csrf = ctx.session._csrf
     let _csrf = ctx.request.body._csrf
-    if (csrf != _csrf) {
+    console.log(ctx.session._csrf)
+    console.log(ctx.request.body._csrf)
+    if (!(csrf && csrf != _csrf)) {
         msg.code = 10101
         msg.msg = '请刷新页面后重试'
         return ctx.body = msg

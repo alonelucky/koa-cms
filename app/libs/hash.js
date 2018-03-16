@@ -13,5 +13,5 @@ function hash256(string, key) {
 // csrf时间戳随机混淆
 function csrf(key) {
     let random = Date.now() + '' + Math.random()
-    hash256(random, key)
+    return hash256(random, key)
 }

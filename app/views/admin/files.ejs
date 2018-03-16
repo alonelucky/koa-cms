@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文档管理页面</title>
+</head>
+
+<body>
+    <ul>
+        <% for (let i=0;i<list.length;i++) {%>
+            <% if(list[i].type=='dir'){ %>
+                <li>
+                    <a href="/admin/files?path=/<%= list[i].name %>"><%= list[i].name %></a>
+                </li>
+            <% } else { %>
+                <li>
+                    <%= list[i].name %>
+                </li>
+            <% } %>
+        <% } %>
+    </ul>
+</body>
+
+</html>
