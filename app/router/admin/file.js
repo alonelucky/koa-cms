@@ -7,7 +7,7 @@ let root = path.join(__dirname, '../../../public')
 router.get('/files', async(ctx, next) => {
     let queryPath = ctx.request.query.path || '/'
     let fileList = await getDir(queryPath)
-    await ctx.html('admin/files', { list: fileList })
+    await ctx.render('admin/files', { list: fileList })
 })
 
 
