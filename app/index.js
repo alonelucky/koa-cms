@@ -36,10 +36,8 @@ render(app, {
     layout: '',
     viewExt: 'ejs',
     cache: false,
-    debug: true
+    debug: false
 })
-
-app.use(ejs)
 
 // 测试路由
 app.use(async(ctx, next) => {
