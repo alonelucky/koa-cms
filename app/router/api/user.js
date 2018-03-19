@@ -8,23 +8,19 @@ let msg = {}
 // 用户登陆逻辑
 router.post('/login', checkCsrf, checkUserForm, async(ctx, next) => {
     let data = ctx.request.body
-
     // 验证是否已注册
     let user = await ctx.db.user.findByName(data.username).catch(err => { console.error(err) })
-    console.log(1)
     if (!user) {
         msg.code = 10102
         msg.msg = '用户不存在'
         ctx.body = msg
         return
     }
-    console.log(2)
     if (user.password != hash.hash256(data.password, data.username)) {
         msg.code = 10103
         msg.msg = '用户名密码不匹配'
         return ctx.body = msg
     }
-    console.log(3)
     msg.code = 0
     msg.msg = '登陆成功'
     user.password = null
@@ -110,9 +106,7 @@ module.exports = router
 function checkCsrf(ctx, next) {
     let csrf = ctx.session._csrf
     let _csrf = ctx.request.body._csrf
-    console.log(ctx.session._csrf)
-    console.log(ctx.request.body._csrf)
-    if (!(csrf && csrf != _csrf)) {
+    if(!csrf&&!_csrf&&csrf!=_csrf){
         msg.code = 10101
         msg.msg = '请刷新页面后重试'
         return ctx.body = msg
