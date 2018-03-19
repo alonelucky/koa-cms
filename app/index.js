@@ -8,12 +8,15 @@ const path = require('path')
 const service = require('./service')
 const router = require('./router')
 const ejs = require('./libs/ejs')
+const csrf = require("./libs/csrf")
 
 // 设置session
 app.use(session({
     key: 'hello',
     store: new Store()
 }))
+
+app.use(csrf("my key"))
 
 // 解析请求
 app.use(bodyParser())
