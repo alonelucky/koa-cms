@@ -1,33 +1,38 @@
 {
-    "name": "koa-cms",
-    "version": "0.0.1",
-    "description": "个人使用CMS,免去大量繁复工作",
-    "main": "index.js",
-    "bin":"index.js",
-    "scripts": {
-        "start": "node index.js",
-        "dev": "supervisor -w app,config.js,index.js -i app/views index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "xiaoxia",
-    "license": "MIT",
-    "pkg":{
-        "assets":["app/views/**/**","public/**/**"]
-    },
-    "dependencies": {
-        "koa": "^2.4.1",
-        "koa-bodyparser": "^4.2.0",
-        "koa-ejs": "^4.1.0",
-        "koa-router": "^7.3.0",
-        "koa-session2": "^2.2.5",
-        "koa-static": "^4.0.2",
-        "lodash": "^4.17.4",
-        "mysql2": "^1.5.1",
-        "redis": "^2.8.0",
-        "sequelize": "^4.28.6"
-    },
-    "devDependencies": {
-        "koa-static": "^4.0.2",
-        "supervisor": "^0.12.0"
-    }
+  "name": "koa-cms",
+  "version": "0.0.1",
+  "description": "个人使用CMS,免去大量繁复工作",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "supervisor -w app,config.js,index.js -i app/views index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xiaoxia",
+  "license": "MIT",
+  "pkg": {
+    "assets": [
+      "app/views/**/**",
+      "public/**/**"
+    ]
+  },
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-ejs": "^4.1.0",
+    "koa-router": "^7.3.0",
+    "koa-session2": "^2.2.5",
+    "koa-static": "^4.0.2",
+    "lodash": "^4.17.4",
+    "mysql2": "^1.5.1",
+    "redis": "^2.8.0",
+    "sequelize": "^4.28.6"
+  },
+  "devDependencies": {
+    "koa-static": "^4.0.2",
+    "mocha": "^5.0.4",
+    "should": "^13.2.1",
+    "supervisor": "^0.12.0"
+  }
 }
