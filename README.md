@@ -1,6 +1,12 @@
 # koa-cms
 个人习惯积累,简单的CMS,用于免除大量重复的操作
 
+#### 0. 运行环境
+```
+node v8.x
+mysql 5.7.x
+redis 3.x
+```
 #### 1. 项目使用
 
 	git clone https://github.com/xiaqiubo/koa-cms.git
