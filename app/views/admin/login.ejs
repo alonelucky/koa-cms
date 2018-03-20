@@ -51,6 +51,7 @@
     <div class="clear"></div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/libs.js"></script>
 <script>
     $('input').on('keydown', function(e) {
         hiddenMsg()
@@ -64,7 +65,13 @@
             data: data,
             method: 'POST',
             success: function(e) {
-                showMsg(e.msg)
+                var href = queryString.format().rewrite || "/"
+                showMsg(e.msg+" ; 正在跳往 url : "+href)
+                if(!e.code){
+                    setTimeout(function(){
+                        location.href=href
+                    },2000)
+                }
             }
         })
     })
