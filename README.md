@@ -1,6 +1,7 @@
 # koa-cms
 个人习惯积累,简单的CMS,用于免除大量重复的操作
-![](/public/koa-cms.jpg)![](/public/koa-cms.png)
+<img width="100" height="100" src="/public/koa-cms.jpg" />
+<img width="100" height="100" src="/public/koa-cms.png" />
 #### 0. 运行环境
 ```
 node v8.x
